@@ -4,11 +4,14 @@ const knex = require("../database/connect");
 module.exports = {
   name: "gacha",
   description: "Bet your money and get more money",
-  args: ['amount'],
+  args: ["amount"],
   run: (client, target, context, args) => {
     // If no args are provided
     if (!args.length) {
-      return client.say(target, `${context.username}, ไม่ใส่ตังเดี๋ยวจะใส่เดี๋ยวกับเอ็ง`);
+      return client.say(
+        target,
+        `${context.username}, ไม่ใส่ตังเดี๋ยวจะใส่เดี๋ยวกับเอ็ง`,
+      );
     }
     // Get the user's balance
     knex
@@ -19,10 +22,7 @@ module.exports = {
         // If there is no rows
         if (!rows) {
           // Return
-          return client.say(
-            target,
-            "ใช้ \"create\" เพื่อสร้างโปรไฟล์ก่อนเด้ออ",
-          );
+          return client.say(target, 'ใช้ "create" เพื่อสร้างโปรไฟล์ก่อนเด้ออ');
         }
         // Check if the user has enough coins
         if (rows.coins < Number(args[0])) {

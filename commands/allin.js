@@ -3,9 +3,10 @@ const knex = require("../database/connect");
 
 module.exports = {
   name: "allin",
-  description: "Just like gacha, but you lose all of your money. (*2 multiplier)",
+  description:
+    "Just like gacha, but you lose all of your money. (*2 multiplier)",
   args: [],
-  run: (client, target, context, args) => {
+  run: (client, target) => {
     // Get the user's balance
     knex
       .select("coins")
@@ -15,10 +16,7 @@ module.exports = {
         // If there is no rows
         if (!rows) {
           // Return
-          return client.say(
-            target,
-            "ใช้ \"create\" เพื่อสร้างโปรไฟล์ก่อนเด้ออ",
-          );
+          return client.say(target, 'ใช้ "create" เพื่อสร้างโปรไฟล์ก่อนเด้ออ');
         }
         // Check if the user has enough coins
         if (rows.coins <= 0) {

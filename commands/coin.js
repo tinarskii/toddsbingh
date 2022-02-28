@@ -15,10 +15,7 @@ module.exports = {
         // If there is no rows
         if (!rows) {
           // Return
-          return client.say(
-            target,
-            "ใช้ \"create\" เพื่อสร้างโปรไฟล์ก่อนเด้ออ",
-          );
+          return client.say(target, 'ใช้ "create" เพื่อสร้างโปรไฟล์ก่อนเด้ออ');
         }
         // Return the balance
         client.say(target, `${target.slice(1)} มี ${rows["coins"]} รอคอยน์`);
