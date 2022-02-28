@@ -17,11 +17,11 @@ module.exports = {
           // Return
           return client.say(
             target,
-            "Use \"create\" command to create a profile.",
+            "ใช้ \"create\" เพื่อสร้างโปรไฟล์ก่อนเด้ออ",
           );
         }
         // Return the balance
-        client.say(target, `${target.slice(1)} has ${rows["coins"]} coins.`);
+        client.say(target, `${target.slice(1)} มี ${rows["coins"]} รอคอยน์`);
       });
   },
 };
