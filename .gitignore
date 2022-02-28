@@ -1,0 +1,5 @@
+# JS Modules
+node_modules
+
+# Environments Variables
+.env
