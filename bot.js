@@ -19,7 +19,7 @@ const opts = {
 // Set commands map
 const commands = new Map();
 // Set bots prefix
-const prefix = "$";
+const prefix = "!";
 
 // Create clients with options
 const client = new tmi.client(opts);
