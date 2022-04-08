@@ -3,6 +3,6 @@ module.exports = {
   description: "Ping the bot",
   args: [],
   run: (client, target) => {
-    client.say(target, "พ่อง!");
+    client.say(target, "pong-fish.vvx.bar!");
   },
 };

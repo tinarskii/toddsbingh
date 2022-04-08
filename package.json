@@ -9,10 +9,13 @@
     "chalk": "4.1.2",
     "dotenv": "^16.0.0",
     "eslint": "^8.10.0",
+    "fluent-ffmpeg": "^2.1.2",
     "knex": "^1.0.3",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "prettier": "^2.5.1",
-    "tmi.js": "^1.8.5"
+    "speaker": "^0.5.4",
+    "tmi.js": "^1.8.5",
+    "ytdl-core": "^4.11.0"
   }
 }
