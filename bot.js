@@ -58,7 +58,7 @@ client.on("message", async (target, context, message, self) => {
   if (args.length !== command.args.length) {
     return client.say(
       target,
-      `${context.username}, Usage: !${command.name} ${command.args.join(" ")}`,
+      `${context.username}, Usage: !${command.name} ${command.args.map(args => `[${args}]`).join(" ")}`,
     );
   }
 
