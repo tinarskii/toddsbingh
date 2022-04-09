@@ -13,6 +13,7 @@ module.exports = {
   name: "song-request",
   description: "Request a song to be played.",
   args: ["youtube-url"],
+  disabled: true,
   run: (client, target, ctx, args) => {
     if (currentSong !== null) {
       return client.say(

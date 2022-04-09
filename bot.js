@@ -45,6 +45,9 @@ client.on("message", async (target, context, message, self) => {
   const command = commands.get(commandName);
 
   if (!command) return;
+  
+  if (command.disabled) return;
+  
 
   if (command.adminOnly) {
     if (!context.mod && !context.badges["broadcaster"]) {
