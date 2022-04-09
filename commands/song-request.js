@@ -12,7 +12,7 @@ let latestCooldown = 0;
 module.exports = {
   name: "song-request",
   description: "Request a song to be played.",
-  args: [],
+  args: ["youtube-url"],
   run: (client, target, ctx, args) => {
     if (currentSong !== null) {
       return client.say(

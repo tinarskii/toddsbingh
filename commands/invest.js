@@ -4,6 +4,7 @@ module.exports = {
   name: "invest",
   description: "Bet your money and get more money",
   args: ["amount"],
+  requireProfile: true,
   run: async (client, target, context, args) => {
     const coins = Math.trunc(parseInt(args[0]));
 
@@ -43,7 +44,8 @@ module.exports = {
                   coins * 2
                 } รอคอยน์`,
               );
-            });
+            })
+            .catch(console.error);
         } else {
           knex("toddsbinUser")
             .where({
@@ -57,11 +59,10 @@ module.exports = {
                 target,
                 `${context.username} ว้าย ๆๆๆ แพ้ไปดิ หายไปเลย ${coins} รอคอยน์`,
               );
-            });
+            })
+            .catch(console.error);
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   },
 };

@@ -20,8 +20,10 @@ module.exports = {
             })
             .then(() => {
               client.say(target, `${context.username} ถูกสร้าง!`);
-            });
+            })
+            .catch(console.error);
         }
-      });
+      })
+      .catch(console.error);
   },
 };

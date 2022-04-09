@@ -2,6 +2,7 @@ require("dotenv").config();
 const tmi = require("tmi.js");
 const fs = require("fs");
 const chalk = require("chalk");
+const knex = require("./database/connect");
 
 const opts = {
   identity: {
@@ -14,7 +15,7 @@ const opts = {
 };
 
 const commands = new Map();
-const prefix = "!";
+const prefix = "~";
 
 const client = new tmi.client(opts);
 
@@ -34,7 +35,7 @@ fs.readdir("./commands", (err, files) => {
   });
 });
 
-client.on("message", (target, context, message, self) => {
+client.on("message", async (target, context, message, self) => {
   if (self) return;
 
   if (!message.startsWith(prefix)) return;
@@ -46,7 +47,7 @@ client.on("message", (target, context, message, self) => {
   if (!command) return;
 
   if (command.adminOnly) {
-    if (!context.mod && !context.badges.broadcaster) {
+    if (!context.mod && !context.badges["broadcaster"]) {
       return client.say(
         target,
         `${context.username}, คำสั่งนี้สำหรับผู้ดูแลเท่านั้น`,
@@ -59,6 +60,19 @@ client.on("message", (target, context, message, self) => {
       target,
       `${context.username}, Usage: !${command.name} ${command.args.join(" ")}`,
     );
+  }
+
+  if (command.requireProfile) {
+    const [rows] = await knex("toddsbinUser").where({
+      username: context.username,
+    });
+
+    if (!rows) {
+      return client.say(
+        target,
+        `${context.username}, โปรไฟล์ของคุณยังไม่ถูกสร้าง โปรดใช้คำสั่ง !create เพื่อสร้างโปรไฟล์ของคุณ`,
+      );
+    }
   }
 
   try {

@@ -19,6 +19,7 @@ module.exports = {
           target,
           `${username || context.username} มีเงิน ${coins} แล้ว`,
         );
-      });
+      })
+      .catch(console.error);
   },
 };

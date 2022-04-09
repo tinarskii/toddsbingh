@@ -4,6 +4,7 @@ module.exports = {
   name: "coin",
   description: "Check your current balance.",
   args: [],
+  requireProfile: true,
   run: (client, target, context) => {
     knex("toddsbinUser")
       .select("coins")
@@ -13,8 +14,6 @@ module.exports = {
       .then(([rows]) => {
         client.say(target, `${context.username} มี ${rows["coins"]} รอคอยน์`);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   },
 };

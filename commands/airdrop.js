@@ -14,8 +14,6 @@ module.exports = {
       .then(() => {
         client.say(target, `สำเร็จ! คุณได้แจกเงินจำนวน ${coins} รอคอยน์`);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   },
 };

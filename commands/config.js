@@ -18,8 +18,6 @@ module.exports = {
       .then(() => {
         client.say(target, `${args[0]} ถูกตั้งเป็น ${args[1]}`);
       })
-      .catch(() => {
-        client.say(target, `ไม่สามารถตั้งค่า ${args[0]} ได้`);
-      });
+      .catch(console.error);
   },
 };
