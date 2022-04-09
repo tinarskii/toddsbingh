@@ -15,7 +15,7 @@ const opts = {
 };
 
 const commands = new Map();
-const prefix = "~";
+const prefix = "!";
 
 const client = new tmi.client(opts);
 
