@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "commit:lint": "commitlint --from HEAD~1 --to HEAD --verbose"
+    "commit:lint": "commitlint --to HEAD~1"
   },
   "dependencies": {
     "@commitlint/cli": "^16.2.1",

@@ -32,7 +32,7 @@ module.exports = {
     ytdl.getInfo(args[0]).then((info) => {
       const { videoDetails: details } = info;
       if (details.lengthSeconds > 480) {
-        return ctx.channel.send("เยอะกว่า 8 นาทีไม่เอา");
+        return client.say("เยอะกว่า 8 นาทีไม่เอา");
       }
       client.say(target, `เล่นเพลงแล้ว: ${details.title}`);
       latestCooldown = Date.now();
