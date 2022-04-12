@@ -15,7 +15,7 @@ module.exports = {
   
     const [tranferRate] = await knex("toddsbinConfig")
       .where({
-        name: "tranferRate",
+        settingsName: "tranferRate",
       })
     const moneyWithFee = Math.ceil(coins * ( parseInt(tranferRate) / 10 ));
   
