@@ -13,11 +13,11 @@ module.exports = {
     let [username, coins] = args;
     coins = parseInt(coins);
   
-    const [tranferRate] = await knex("toddsbinConfig")
+    const [transferRate] = await knex("toddsbinConfig")
       .where({
-        settingsName: "tranferRate",
+        settingsName: "transferRate",
       })
-    const moneyWithFee = Math.ceil(coins * ( parseInt(tranferRate) / 10 ));
+    const moneyWithFee = Math.ceil(coins * ( parseInt(transferRate) / 10 ));
   
     try {
       knex("toddsbinUser")
