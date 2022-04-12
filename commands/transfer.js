@@ -17,8 +17,9 @@ module.exports = {
       .where({
         settingsName: "transferRate",
       })
-    const moneyWithFee = Math.ceil(coins * ( parseInt(transferRate) / 10 ));
-  
+    const fee = Math.ceil(coins * ( parseInt(transferRate) / 100 ));
+    const moneyWithFee = coins + fee;
+    
     try {
       knex("toddsbinUser")
         .where({
@@ -26,7 +27,7 @@ module.exports = {
         })
         .then(([rows]) => {
           if (rows.coins < moneyWithFee) {
-            return client.say(target, `${context.username}, ตั้งเอ็งไม่พอโว้ย`);
+            return client.say(target, `${context.username}, ตั้งเอ็งไม่พอโว้ย ต้องการ ${moneyWithFee} นะจ๊ะ (คิดค่าธรรมเนียม ${fee} $WAIT)`);
           }
           knex("toddsbinUser")
             .where({
@@ -39,13 +40,12 @@ module.exports = {
                   `${context.username}, เอ็งจะโอนให้ผีหรอ`,
                 );
               } else {
-              
                 knex("toddsbinUser")
                   .where({
                     username: context.username,
                   })
                   .update({
-                    coins: knex.raw("coins - ?", moneyWithFee - args[1]),
+                    coins: knex.raw("coins - ?", moneyWithFee),
                   })
                   .then(() => {
                     knex("toddsbinUser")
@@ -53,12 +53,12 @@ module.exports = {
                         username,
                       })
                       .update({
-                        coins: knex.raw("coins + ?", args[1]),
+                        coins: knex.raw("coins + ?", coins),
                       })
                       .then(() => {
                         client.say(
                           target,
-                          `${context.username}, คุณได้โอน ${coins} เหรียญไปยัง ${username} แล้ว (เสียค่าโอน ${moneyWithFee - args[1]} เหรียญ)`,
+                          `${context.username}, คุณได้โอน ${coins} เหรียญไปยัง ${username} แล้ว (เสียค่าโอน ${fee} $WAIT)`,
                         );
                       });
                   });
