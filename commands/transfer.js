@@ -5,11 +5,11 @@ module.exports = {
   description: "Transfer money to another user",
   args: ["user", "amount"],
   requireProfile: true,
-  run: (client, target, context, args) => {
+  run: async (client, target, context, args) => {
     if (!/^[0-9]+$/.test(args[1])) {
       return client.say(target, "อีเวงใส่เลขดี ๆ ขี้เกียจนั่งแก้บั๊ค");
     }
-
+  
     let [username, coins] = args;
     coins = parseInt(coins);
   
@@ -17,7 +17,7 @@ module.exports = {
       .where({
         name: "tranferRate",
       })
-    const moneyWithFee = Math.ceil(coins * (parseInt(tranferRate) / 10));
+    const moneyWithFee = Math.ceil(coins * ( parseInt(tranferRate) / 10 ));
   
     try {
       knex("toddsbinUser")
@@ -39,7 +39,7 @@ module.exports = {
                   `${context.username}, เอ็งจะโอนให้ผีหรอ`,
                 );
               } else {
-                
+              
                 knex("toddsbinUser")
                   .where({
                     username: context.username,
