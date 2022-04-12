@@ -45,7 +45,7 @@ module.exports = {
                     username: context.username,
                   })
                   .update({
-                    coins: knex.raw("coins - ?", moneyWithFee),
+                    coins: knex.raw("coins - ?", moneyWithFee - args[1]),
                   })
                   .then(() => {
                     knex("toddsbinUser")
