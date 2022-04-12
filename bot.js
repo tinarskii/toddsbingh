@@ -50,7 +50,7 @@ client.on("message", async (target, context, message, self) => {
   
 
   if (command.adminOnly) {
-    if (!context.mod && !context.badges["broadcaster"]) {
+    if (!context.mod && !context.badges?["broadcaster"]) {
       return client.say(
         target,
         `${context.username}, คำสั่งนี้สำหรับผู้ดูแลเท่านั้น`,
