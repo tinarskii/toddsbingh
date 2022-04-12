@@ -13,7 +13,7 @@ module.exports = {
     let [username, coins] = args;
     coins = parseInt(coins);
   
-    const [transferRate] = await knex("toddsbinConfig")
+    const [{ settingsValue: transferRate }] = await knex("toddsbinConfig")
       .where({
         settingsName: "transferRate",
       })
