@@ -13,5 +13,5 @@ module.exports = {
         client.say(target, `${user} โดนเตะไปดาวอังคารเรียบร้อย`);
       })
       .catch(console.error);
-  },
+  }
 };

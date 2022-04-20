@@ -4,5 +4,5 @@ module.exports = {
   args: [],
   run: (client, target) => {
     client.say(target, "pong-fish.vvx.bar!");
-  },
+  }
 };

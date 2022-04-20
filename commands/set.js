@@ -9,17 +9,17 @@ module.exports = {
     const [username, coins] = args;
     knex("toddsbinUser")
       .where({
-        username: username || context.username,
+        username: username || context.username
       })
       .update({
-        coins,
+        coins
       })
       .then(() => {
         client.say(
           target,
-          `${username || context.username} มีเงิน ${coins} แล้ว`,
+          `${username || context.username} มีเงิน ${coins} แล้ว`
         );
       })
       .catch(console.error);
-  },
+  }
 };

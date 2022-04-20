@@ -3,7 +3,7 @@ const Speaker = require("speaker");
 const speaker = new Speaker({
   channels: 2,
   bitDepth: 16,
-  sampleRate: 48000,
+  sampleRate: 48000
 });
 const ffmpeg = require("fluent-ffmpeg");
 let currentSong = null;
@@ -18,7 +18,7 @@ module.exports = {
     if (currentSong !== null) {
       return client.say(
         target,
-        `โปรดรอเพลง ${currentSong.title} ให้เล่นจบก่อน`,
+        `โปรดรอเพลง ${currentSong.title} ให้เล่นจบก่อน`
       );
     }
     const youtubeRegex =
@@ -29,40 +29,41 @@ module.exports = {
     if (!youtubeRegex.test(args[0])) {
       return client.say(target, "ใส่เป็นลิ้งค์โว้ย");
     }
-
-    ytdl.getInfo(args[0]).then((info) => {
-      const { videoDetails: details } = info;
-      if (details.lengthSeconds > 480) {
-        return client.say("เยอะกว่า 8 นาทีไม่เอา");
-      }
-      client.say(target, `เล่นเพลงแล้ว: ${details.title}`);
-      latestCooldown = Date.now();
-
-      const audio = ytdl(args[0], {
-        filter: "audioonly",
-        quality: "highestaudio",
-        highWaterMark: 1 << 25,
-      });
-
-      ffmpeg(audio)
-        .format("s16le")
-        .on("error", (err) => {
-          console.log(err);
-        })
-        .pipe(speaker);
-
-      currentSong = {
-        title: details.title,
-        url: args[0],
-      };
-
-      setTimeout(() => {
-        if (currentSong.title === details.title) {
-          currentSong = null;
-          speaker.end();
-          client.say(target, `หยุดเพลงแล้ว: ${details.title}`);
+    
+    ytdl.getInfo(args[0])
+      .then((info) => {
+        const { videoDetails: details } = info;
+        if (details.lengthSeconds > 480) {
+          return client.say("เยอะกว่า 8 นาทีไม่เอา");
         }
-      }, details.lengthSeconds * 1000);
-    });
-  },
+        client.say(target, `เล่นเพลงแล้ว: ${details.title}`);
+        latestCooldown = Date.now();
+        
+        const audio = ytdl(args[0], {
+          filter: "audioonly",
+          quality: "highestaudio",
+          highWaterMark: 1 << 25
+        });
+        
+        ffmpeg(audio)
+          .format("s16le")
+          .on("error", (err) => {
+            console.log(err);
+          })
+          .pipe(speaker);
+        
+        currentSong = {
+          title: details.title,
+          url: args[0]
+        };
+        
+        setTimeout(() => {
+          if (currentSong.title === details.title) {
+            currentSong = null;
+            speaker.end();
+            client.say(target, `หยุดเพลงแล้ว: ${details.title}`);
+          }
+        }, details.lengthSeconds * 1000);
+      });
+  }
 };

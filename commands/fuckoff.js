@@ -14,9 +14,9 @@ module.exports = {
       .then(() => {
         client.say(
           target,
-          `ทุกคนมีเงิน ${coins} แล้ว`,
+          `ทุกคนมีเงิน ${coins} แล้ว`
         );
       })
       .catch(console.error);
-  },
+  }
 };

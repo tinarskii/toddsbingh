@@ -4,5 +4,5 @@ module.exports = {
   args: [],
   run: (client, target) => {
     client.say(target, "พี่นิ้งน่าร้ากกกก");
-  },
+  }
 };

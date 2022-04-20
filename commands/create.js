@@ -9,14 +9,14 @@ module.exports = {
       .select("*")
       .from("toddsbinUser")
       .where({
-        username: context.username,
+        username: context.username
       })
       .then(([rows]) => {
         if (!rows) {
           knex("toddsbinUser")
             .insert({
               username: context.username,
-              coins: 100,
+              coins: 100
             })
             .then(() => {
               client.say(target, `${context.username} ถูกสร้าง!`);
@@ -25,5 +25,5 @@ module.exports = {
         }
       })
       .catch(console.error);
-  },
+  }
 };

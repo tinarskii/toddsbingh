@@ -9,11 +9,11 @@ module.exports = {
     knex("toddsbinUser")
       .select("coins")
       .where({
-        username: context.username,
+        username: context.username
       })
       .then(([rows]) => {
         client.say(target, `${context.username} มี ${rows["coins"]} รอคอยน์`);
       })
       .catch(console.error);
-  },
+  }
 };

@@ -7,17 +7,17 @@ module.exports = {
   adminOnly: true,
   run: (client, target, context, args) => {
     const [settingsName, settingsValue] = args;
-
+    
     knex("toddsbinConfig")
       .where({
-        settingsName,
+        settingsName
       })
       .update({
-        settingsValue,
+        settingsValue
       })
       .then(() => {
         client.say(target, `${args[0]} ถูกตั้งเป็น ${args[1]}`);
       })
       .catch(console.error);
-  },
+  }
 };

@@ -20,15 +20,15 @@ module.exports = {
           "kaxips06",
           "soundalerts",
           "anotherttvviewer",
-          "toddsbingh",
+          "toddsbingh"
         ];
         const filterViewers = viewers.filter(
-          (viewer) => !filterUsers.includes(viewer.toLowerCase()),
+          (viewer) => !filterUsers.includes(viewer.toLowerCase())
         );
         const randomUser =
           filterViewers[Math.floor(Math.random() * filterViewers.length)];
-
+        
         client.say(target, `${randomUser ? randomUser + " " : "ไม่มีใคร"}ชนะ`);
       });
-  },
+  }
 };

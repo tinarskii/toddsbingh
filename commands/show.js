@@ -6,10 +6,10 @@ module.exports = {
   args: ["settings"],
   run: (client, target, context, args) => {
     const [settingsName] = args;
-
+    
     knex("toddsbinConfig")
       .where({
-        settingsName,
+        settingsName
       })
       .then(([rows]) => {
         if (!rows) {
@@ -18,5 +18,5 @@ module.exports = {
         client.say(target, `${settingsName} ถูกตั้งไว้เป็น ${rows.settingsValue}`);
       })
       .catch(console.error);
-  },
+  }
 };

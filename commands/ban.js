@@ -11,5 +11,5 @@ module.exports = {
         client.say(target, `${user} โดนประหารเรียบร้อย`);
       })
       .catch(console.error);
-  },
+  }
 };

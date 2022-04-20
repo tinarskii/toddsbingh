@@ -14,12 +14,23 @@
       2,
       {
         "SwitchCase": 1,
-        "ignoredNodes": ["ConditionalExpression"]
+        "ignoredNodes": [
+          "ConditionalExpression"
+        ]
       }
     ],
-    "linebreak-style": ["error", "windows"],
-    "quotes": ["error", "double"],
-    "semi": ["error", "always"],
+    "linebreak-style": [
+      "error",
+      "windows"
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
     "prefer-template": "error",
     "default-case": "error",
     "no-unused-vars": "error",

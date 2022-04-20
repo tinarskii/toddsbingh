@@ -6,17 +6,17 @@ module.exports = {
   args: ["user", "amount"],
   run: (client, target, context, args) => {
     const [username, amount] = args;
-
+    
     knex("toddsbinUser")
       .where({
-        username: username || context.username,
+        username: username || context.username
       })
       .update({
-        coins: knex.raw("coins + ?", amount),
+        coins: knex.raw("coins + ?", amount)
       })
       .then(() => {
         client.say(target, `${username} ได้รับ ${amount} รอคอยน์`);
       })
       .catch(console.error);
-  },
+  }
 };
