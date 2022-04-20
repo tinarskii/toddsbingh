@@ -9,7 +9,7 @@ module.exports = {
     const [code] = args;
     const [coupon] = await knex("toddsbinCoupon")
       .where({
-        code,
+        code
       });
     
     if (!coupon) {
@@ -39,7 +39,7 @@ module.exports = {
         );
         
         coupon.redeem_by.push(context.username);
-        coupon.limit--;
+        coupon.limit --;
         
         knex("toddsbinCoupon")
           .where({ code })
