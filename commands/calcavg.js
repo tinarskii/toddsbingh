@@ -10,12 +10,12 @@ module.exports = {
       .then((rows) => {
         let allCoins = rows.map((row) => Number(row.coins));
         let sum = allCoins.reduce((a, b) => a + b, 0);
-        let avg = sum / allCoins.length;
+        let avg = Math.round(sum / allCoins.length);
         console.log(allCoins);
-        let avgThai = Math.ceil(avg * 25);
+        let avgThai = Math.ceil(avg * 5);
         
         client.say(target,
-          `รอคอยน์มีเฉลี่ยที่ ${avg} และค่าเงินต่อหนึ่งบาท ${avgThai}`
+          `รอคอยน์มีเฉลี่ยที่ ${avg} และค่าเงินต่อหนึ่งบาทอยู่ที่ ${avgThai} รอคอยน์`
         );
       })
       .catch(console.error);
